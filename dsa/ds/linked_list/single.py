@@ -17,8 +17,11 @@ class SinglyLinkedListNode:
         curr = self
         while curr.next:
             curr = curr.next
-        curr.next = SinglyLinkedListNode(value)
-        return self
+        node = SinglyLinkedListNode(value)
+        if self.value:
+            curr.next = SinglyLinkedListNode(value)
+            return self
+        return node
 
     # value and position
 
@@ -37,18 +40,24 @@ class SinglyLinkedListNode:
     def traverse():
         pass
 
-    def search():
-        pass
+    def search(self, value):
+        # returns index of value
+        curr = self
+        found_idx = -1
+        iter_idx = 0
+        while curr.next:
+            # if
+            curr = curr.next
+            iter_idx += 1
+        # TODO: come back to this
 
     # utilities
-    def is_empty(self):
-        return bool(self.value)
-
     def size(self):
         count = 1 if self.value else 0
         curr = self
         while curr.next:
             count += 1
+            curr = curr.next
         return count
 
     def cycles(self):

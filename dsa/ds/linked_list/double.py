@@ -33,12 +33,16 @@ class DoublyLinkedListNode:
     def traverse():
         pass
 
-    def search():
+    def search(self, value):
         pass
-
     # utilities
-    def is_empty(self):
-        return bool(self.value)
 
-    def size():
+    def size(self):
+        count = 1 if self.value else 0
+        curr = self
+        while curr.next:
+            count += 1
+        return count
+
+    def cycles(self):
         pass
