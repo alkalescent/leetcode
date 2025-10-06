@@ -33,12 +33,31 @@ class SinglyLinkedListNode:
     def pop():
         pass
 
-    def del_val():
-        pass
+    def del_val(self, value):
+        # also (if not self OR if not self.value OR ...)
+        if self.value == value:
+            return self.next
+
+        head = self
+        curr = self
+        while curr and curr.next:
+            # look at curr.next.value
+            if curr.next.value == value:
+                curr.next = curr.next.next
+            curr = curr.next
+
+        return head
 
     # traversal and search
-    def traverse():
-        pass
+    def traverse(self):
+        nodes = []
+        curr = self
+        if curr.value:
+            nodes.append(curr.value)
+        while curr.next:
+            nodes.append(curr.next.value)
+            curr = curr.next
+        return nodes
 
     def search(self, value):
         # returns index of value
@@ -46,10 +65,13 @@ class SinglyLinkedListNode:
         found_idx = -1
         iter_idx = 0
         while curr.next:
-            # if
+            if curr.value == value:
+                found_idx = iter_idx
             curr = curr.next
             iter_idx += 1
-        # TODO: come back to this
+        if curr.value == value:
+            found_idx = iter_idx
+        return found_idx
 
     # utilities
     def size(self):

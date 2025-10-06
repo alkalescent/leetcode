@@ -45,6 +45,65 @@ class TestSinglyLinkedList:
         assert node.next.value == "new_last"
         assert not node.next.next
 
+    def test_del_val(self):
+        node = SinglyLinkedListNode()
+        assert not node.del_val(None)
+
+        node = SinglyLinkedListNode(1)
+        assert node.del_val(2) == node
+
+        node = SinglyLinkedListNode(1)
+        assert not node.del_val(1)
+
+        node = SinglyLinkedListNode(1, SinglyLinkedListNode(4))
+        assert node.del_val(1).traverse() == [4]
+
+        node = SinglyLinkedListNode(1, SinglyLinkedListNode(4))
+        assert node.del_val(4).traverse() == [1]
+
+        node = SinglyLinkedListNode(
+            1, SinglyLinkedListNode(4, SinglyLinkedListNode(2)))
+        assert node.del_val(1).traverse() == [4, 2]
+        node = SinglyLinkedListNode(
+            1, SinglyLinkedListNode(4, SinglyLinkedListNode(2)))
+        assert node.del_val(4).traverse() == [1, 2]
+        node = SinglyLinkedListNode(
+            1, SinglyLinkedListNode(4, SinglyLinkedListNode(2)))
+        assert node.del_val(2).traverse() == [1, 4]
+
+    def test_traverse(self):
+        node = SinglyLinkedListNode()
+        assert node.traverse() == []
+
+        node = SinglyLinkedListNode(1)
+        assert node.traverse() == [1]
+
+        node = SinglyLinkedListNode(1, SinglyLinkedListNode(4))
+        assert node.traverse() == [1, 4]
+
+        node = SinglyLinkedListNode(
+            1, SinglyLinkedListNode(4, SinglyLinkedListNode(2)))
+        assert node.traverse() == [1, 4, 2]
+
+    def test_search(self):
+        node = SinglyLinkedListNode()
+        assert node.search(1) == -1
+
+        node = SinglyLinkedListNode(1)
+        assert node.search(1) == 0
+        assert node.search(2) == -1
+
+        node = SinglyLinkedListNode(1, SinglyLinkedListNode(4))
+        assert node.search(1) == 0
+        assert node.search(4) == 1
+        assert node.search(2) == -1
+
+        node = SinglyLinkedListNode(
+            1, SinglyLinkedListNode(4, SinglyLinkedListNode(2)))
+        assert node.search(1) == 0
+        assert node.search(4) == 1
+        assert node.search(2) == 2
+
     def test_size(self):
         node = SinglyLinkedListNode()
         assert node.size() == 0
