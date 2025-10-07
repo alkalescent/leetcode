@@ -45,6 +45,32 @@ class TestSinglyLinkedList:
         assert node.next.value == "new_last"
         assert not node.next.next
 
+    def test_pop(self):
+        node = SinglyLinkedListNode()
+        assert not node.pop(0)
+
+        node = SinglyLinkedListNode(1)
+        assert node.pop(1) == node
+
+        node = SinglyLinkedListNode(1)
+        assert not node.pop(0)
+
+        node = SinglyLinkedListNode(1, SinglyLinkedListNode(4))
+        assert node.pop(0).traverse() == [4]
+
+        node = SinglyLinkedListNode(1, SinglyLinkedListNode(4))
+        assert node.pop(1).traverse() == [1]
+
+        node = SinglyLinkedListNode(
+            1, SinglyLinkedListNode(4, SinglyLinkedListNode(2)))
+        assert node.pop(0).traverse() == [4, 2]
+        node = SinglyLinkedListNode(
+            1, SinglyLinkedListNode(4, SinglyLinkedListNode(2)))
+        assert node.pop(1).traverse() == [1, 2]
+        node = SinglyLinkedListNode(
+            1, SinglyLinkedListNode(4, SinglyLinkedListNode(2)))
+        assert node.pop(2).traverse() == [1, 4]
+
     def test_del_val(self):
         node = SinglyLinkedListNode()
         assert not node.del_val(None)

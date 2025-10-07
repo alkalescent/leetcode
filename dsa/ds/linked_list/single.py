@@ -30,8 +30,21 @@ class SinglyLinkedListNode:
 
     # deletion
     # take position
-    def pop():
-        pass
+    def pop(self, index):
+        head = self
+        iter_idx = 0
+        curr = self
+        # if index == iter_idx and curr.next:
+        #     curr.next = curr.next.next
+        if index == 0:
+            return self.next
+        while curr.next:
+            iter_idx += 1
+            if index == iter_idx:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+        return head
 
     def del_val(self, value):
         # also (if not self OR if not self.value OR ...)
